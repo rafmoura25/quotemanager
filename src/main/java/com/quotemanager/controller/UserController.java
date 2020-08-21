@@ -3,6 +3,8 @@ package com.quotemanager.controller;
 import com.quotemanager.dto.UserDTO;
 import com.quotemanager.model.User;
 import com.quotemanager.service.UserService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -23,6 +25,7 @@ public class UserController {
     @GetMapping
     @ResponseBody
     @ResponseStatus(HttpStatus.CREATED)
+    @ApiOperation(value = "List all users", response = UserDTO.class)
     public List<UserDTO> findAllUsers(){
         List<User> users = userService.findAll();
         return users.stream()
@@ -32,6 +35,7 @@ public class UserController {
 
     @GetMapping(value = "/{id}")
     @ResponseBody
+    @ApiOperation(value = "Find by User Id", response = UserDTO.class)
     public UserDTO findUser(@PathVariable("id") String id){
         return convertToDto(userService.findById(id));
     }
