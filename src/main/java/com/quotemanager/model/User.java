@@ -1,5 +1,6 @@
 package com.quotemanager.model;
 
+import com.quotemanager.dto.UserDTO;
 import com.quotemanager.model.enums.UserStatus;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -20,4 +21,13 @@ public class User {
     private String password;
     private Date createdDate;
     private UserStatus status;
+
+    public UserDTO toDto(){
+        return UserDTO.builder()
+                .name(this.name)
+                .email(this.email)
+                .login(this.login)
+                .build();
+
+    }
 }
